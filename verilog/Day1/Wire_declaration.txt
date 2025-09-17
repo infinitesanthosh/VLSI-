@@ -1,0 +1,24 @@
+module top_module (
+    input in,              // Declare an input wire named "in"
+    output out             // Declare an output wire named "out"
+);
+
+    wire not_in;           // Declare a wire named "not_in"
+
+    assign out = ~not_in;  // Assign a value to out (create a NOT gate).
+    assign not_in = ~in;   // Assign a value to not_in (create another NOT gate).
+
+endmodule   // End of module "top_module"
+
+In Verilog-2001 and later, when you write:
+        By default → in is input wire
+        By default → out is output wire (unless you later drive it in an always block, in which case it must be declared as reg)
+Why declare wire not_in;?
+        Because not_in is an internal signal inside the module.
+        It’s not a port (not in the module header).
+        Verilog requires you to declare its type explicitly → here it’s wire.
+          
+
+    assign out = ~not_in;
+    assign not_in = ~in; 
+Both statements are active in parallel, continuously driving their outputs.
