@@ -1,0 +1,32 @@
+// 📘 Day 1 – Verilog Basics (Quick Revision)
+
+// 🔹 HDL Levels
+// - Gate Level → basic gates (AND, OR, NOT...)
+// - Dataflow  → use "assign" (equations, expressions)
+// - Behavioral → use "always" (if/case, sequential logic)
+// Mnemonic: "G-D-B = Gates → Data → Behavior"
+
+// 🔹 Important Keywords
+// module ... endmodule → design block
+// input / output → ports
+// wire → for continuous assign
+// reg  → for always blocks
+// Mnemonic: "Wire is live, Reg remembers"
+
+// 🔹 Operators
+// & | ^ ~   → bitwise AND, OR, XOR, NOT
+// && || !  → logical AND, OR, NOT
+// << >>    → shifts (zero fill)
+// Mnemonic: "1 symbol = bitwise, 2 symbols = logical"
+
+// 🔹 Equality
+// == / !=  → may give X if unknown
+// === / !== → strict, includes X & Z
+// Mnemonic: "2 equals can be X, 3 equals is exact"
+
+// 🔹 Adders/Subtractors
+// Half Adder: sum=a^b, cout=a&b
+// Full Adder: sum=a^b^cin, cout=(a&b)|(b&cin)|(a&cin)
+// Half Sub: diff=a^b, borrow=~a & b
+// Full Sub: diff=a^b^bin, borrow=(~a&b)|(bin&~a)|(bin&b)
+// Mnemonic: "Adder uses XOR+AND/OR, Subtractor uses XOR+borrow"
