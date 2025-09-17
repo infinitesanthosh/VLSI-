@@ -1,0 +1,55 @@
+//Verilog-2001 ANSI-style port declaration syntax
+module top_module ( output zero ); 
+    // Verilog-2001
+endmodule
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. Continuous assignments
+
+  assign y = a & b;
+
+* Outside procedural blocks.
+* Drives a `wire` continuously → whenever `a` or `b` changes, `y` updates immediately.
+* Only synthesizable style → actual combinational hardware.
+
+2. Assignments inside procedural blocks
+
+Procedural blocks = `always` or `initial`. Inside them, Verilog supports three types of assignment operators:
+
+        (a) Blocking assignment (`=`) ✅ synthesizable
+        always @(*) begin
+           x = a & b;   // blocking
+           y = x | c;
+        end
+        
+        * Works step by step, in order (serial) like C.
+        * Used for combinational logic.
+        * “Block” next line until done.
+        
+        
+        (b) Non-blocking assignment (`<=`) ✅ synthesizable
+        always @(posedge clk) begin
+           q <= d;   // non-blocking
+        end
+        
+        * All RHS values are evaluated in parallel, updates happen together at end of time-step.
+        * Used for sequential logic (flip-flops).
+        * Prevents race conditions.
+        
+        (c) Procedural continuous assignment (`assign` inside procedural block) ❌ not synthesizable
+        
+        always @(*) begin
+           assign y = a & b;  // procedural continuous assign
+        end
+        
+        * Similar to normal `assign`, but inside a block.
+        * Rare, mostly used for testbenches, not hardware.
+
+3. Which are synthesizable?
+
+* Blocking (`=`) → Yes (for combinational).
+* Non-blocking (`<=`) → Yes (for sequential).
+* Procedural continuous assign → No (simulation-only).
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  
